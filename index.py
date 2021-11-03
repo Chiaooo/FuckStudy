@@ -14,7 +14,7 @@ def main():
     push = pushKit(config['notifyOption'])
     for user in config['users']:
         Utils.log(f"10s后开始执行用户{user['user']['username'] if user['user']['username'] else '默认用户'}的任务")
-        sleep(10)
+        sleep(0)
         if config['debug']:
             msg = working(user)
         else:
