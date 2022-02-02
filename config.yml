@@ -38,12 +38,12 @@ ocrOption:
 # 温馨提示：请仔细注意每个模板是属于哪个任务类型的配置！##
 ##################################################
 users:
-  # 第一个用户配置
+  # 第一个用户配置  焦天
   # 以下配置为工作日志
   # 这里默认仅适配宜宾学院，其他学校自行修改
   - user: 
       # 任务类型（收集：0、签到：1、查寝：2、教师工作日志：3）
-      type: 1
+      type: 0
       # school 学校全称
       schoolName: 长春工业大学
       # username 学号或者工号
@@ -51,7 +51,7 @@ users:
       # password 密码
       password: 'qweasd1234'
       # 地址信息
-      address: '吉林省长春市宽城区地理路'
+      address: '吉林省长春市南关区太阳一道278号'
       notifyOption:
         # method和顶部参数一致，不填默认按照顶部参数执行
         method: 2
@@ -59,194 +59,54 @@ users:
         rcvAcc: '779442425@qq.com'
       # 附上经纬度查询地址（请自行选择自己的学校地址，address，lon，lat都要填查询到的）：http://api.map.baidu.com/lbsapi/getpoint/index.html
       # lon 经度
-      lon: 125.398101
+      lon: 125.290736
       # lat 纬度
-      lat: 44.001899
+      lat: 43.813373
       # 是否检查表单的标题（1代表检查，0代表不检查）
       checkTitle: 1
+      onlyRequired: 1
       #代理ip信息（格式为：网络协议://ip地址:端口   如：http://127.0.0.1:7890）
       proxy: 
       # 表单信息
       forms:
         - form:
-            title: 早测温
-            value: 37.3度以下
+            title: 体温
+            value: 37.3℃以下
         - form:
-            title: 午测温
-            value: 37.3度以下
-        - form:
-            title: 晚测温
-            value: 37.3度以下
-        - form:
-            title: 健康状况
+            title: 本人身体健康状况
             value: 健康
-      photo: 0.jpg
-  # 第二个用户配置
-  # 以下配置为信息收集
-  # 这里默认仅适配宜宾学院，其他学校自行修改
+        - form:
+            title: 家人身体状况有无异常
+            value: 健康
+        - form:
+            title: 本人或家人当日是否接触来自疫情中高风险地区人员、境外人员，疑似病例、无症状感染者或确诊病例
+            value: 否
+        - form:
+            title: 当日是否去过中、高风险地区
+            value: 否
+        - form:
+            title: 当日是否有跨省或市异动出行
+            value: 否
+        - form:
+            title: 是否被医学隔离
+            value: 否
+        - form:
+            title: 是否为疑似病例
+            value: 否
+        - form:
+            title: 是否为无症状感染者
+            value: 否
+        - form:
+            title: 是否为确诊病例
+            value: 否
+        - form:
+            title: 是否出入境
+            value: 否
+      photo:
+ # 第三个用户配置 李悦嘉
   - user:
       # 任务类型（收集：0、签到：1、查寝：2、教师工作日志：3）
-      type: 1
-      # school 学校全称
-      schoolName: 长春工业大学
-      # username 学号或者工号
-      username: '20191207'
-      # password 密码
-      password: 'qweasd1234'
-      # 地址信息
-      address: '吉林省长春市宽城区地理路'
-      notifyOption:
-        # method和顶部参数一致，不填默认按照顶部参数执行
-        method: 2
-        # rcvAcc为接受消息的账号，可以为Email账号、QQ号、或者是企业微信ID(@all为全体)
-        rcvAcc: '1075268033@qq.com'
-      # 附上经纬度查询地址（请自行选择自己的学校地址，address，lon，lat都要填查询到的）：http://api.map.baidu.com/lbsapi/getpoint/index.html
-      # lon 经度
-      lon: 125.398101
-      # lat 纬度
-      lat: 44.001899
-      # 是否检查表单的标题（1代表检查，0代表不检查）
-      checkTitle: 1
-      #代理ip信息（格式为：网络协议://ip地址:端口   如：http://127.0.0.1:7890）
-      proxy:
-      # 表单信息
-      forms:
-        - form:
-            title: 早测温
-            value: 37.3度以下
-        - form:
-            title: 午测温
-            value: 37.3度以下
-        - form:
-            title: 晚测温
-            value: 37.3度以下
-        - form:
-            title: 健康状况
-            value: 健康
-      photo: 2.jpg
-  - user:
-      # 任务类型（收集：0、签到：1、查寝：2、教师工作日志：3）
-      type: 1
-      # school 学校全称
-      schoolName: 长春工业大学
-      # username 学号或者工号
-      username: '20214216'
-      # password 密码
-      password: 'yhci29'
-      # 地址信息
-      address: '吉林省长春市宽城区地理路'
-      notifyOption:
-        # method和顶部参数一致，不填默认按照顶部参数执行
-        method: 2
-        # rcvAcc为接受消息的账号，可以为Email账号、QQ号、或者是企业微信ID(@all为全体)
-        rcvAcc: '1392290580@qq.com'
-      # 附上经纬度查询地址（请自行选择自己的学校地址，address，lon，lat都要填查询到的）：http://api.map.baidu.com/lbsapi/getpoint/index.html
-      # lon 经度
-      lon: 125.398101
-      # lat 纬度
-      lat: 44.001899
-      # 是否检查表单的标题（1代表检查，0代表不检查）
-      checkTitle: 1
-      #代理ip信息（格式为：网络协议://ip地址:端口   如：http://127.0.0.1:7890）
-      proxy:
-      # 表单信息
-      forms:
-        - form:
-            title: 早测温
-            value: 37.3度以下
-        - form:
-            title: 午测温
-            value: 37.3度以下
-        - form:
-            title: 晚测温
-            value: 37.3度以下
-        - form:
-            title: 健康状况
-            value: 健康
-      photo: 1.jpg
-  - user:
-      # 任务类型（收集：0、签到：1、查寝：2、教师工作日志：3）
-      type: 1
-      # school 学校全称
-      schoolName: 长春工业大学
-      # username 学号或者工号
-      username: '20214271'
-      # password 密码
-      password: 'mima123456'
-      # 地址信息
-      address: '吉林省长春市宽城区地理路'
-      notifyOption:
-        # method和顶部参数一致，不填默认按照顶部参数执行
-        method: 2
-        # rcvAcc为接受消息的账号，可以为Email账号、QQ号、或者是企业微信ID(@all为全体)
-        rcvAcc: '1783579628@qq.com'
-      # 附上经纬度查询地址（请自行选择自己的学校地址，address，lon，lat都要填查询到的）：http://api.map.baidu.com/lbsapi/getpoint/index.html
-      # lon 经度
-      lon: 125.398101
-      # lat 纬度
-      lat: 44.001899
-      # 是否检查表单的标题（1代表检查，0代表不检查）
-      checkTitle: 1
-      #代理ip信息（格式为：网络协议://ip地址:端口   如：http://127.0.0.1:7890）
-      proxy:
-      # 表单信息
-      forms:
-        - form:
-            title: 早测温
-            value: 37.3度以下
-        - form:
-            title: 午测温
-            value: 37.3度以下
-        - form:
-            title: 晚测温
-            value: 37.3度以下
-        - form:
-            title: 健康状况
-            value: 健康
-      photo: 3.jpg
-  - user:
-      # 任务类型（收集：0、签到：1、查寝：2、教师工作日志：3）
-      type: 1
-      # school 学校全称
-      schoolName: 长春工业大学
-      # username 学号或者工号
-      username: '20214248'
-      # password 密码
-      password: 'fs2205232001'
-      # 地址信息
-      address: '吉林省长春市宽城区地理路'
-      notifyOption:
-        # method和顶部参数一致，不填默认按照顶部参数执行
-        method: 2
-        # rcvAcc为接受消息的账号，可以为Email账号、QQ号、或者是企业微信ID(@all为全体)
-        rcvAcc: '3574308916@qq.com'
-      # 附上经纬度查询地址（请自行选择自己的学校地址，address，lon，lat都要填查询到的）：http://api.map.baidu.com/lbsapi/getpoint/index.html
-      # lon 经度
-      lon: 125.398101
-      # lat 纬度
-      lat: 44.001899
-      # 是否检查表单的标题（1代表检查，0代表不检查）
-      checkTitle: 1
-      #代理ip信息（格式为：网络协议://ip地址:端口   如：http://127.0.0.1:7890）
-      proxy:
-      # 表单信息
-      forms:
-        - form:
-            title: 早测温
-            value: 37.3度以下
-        - form:
-            title: 午测温
-            value: 37.3度以下
-        - form:
-            title: 晚测温
-            value: 37.3度以下
-        - form:
-            title: 健康状况
-            value: 健康
-      photo: fengshi.jpg
-  - user:
-      # 任务类型（收集：0、签到：1、查寝：2、教师工作日志：3）
-      type: 1
+      type: 0
       # school 学校全称
       schoolName: 长春工业大学
       # username 学号或者工号
@@ -254,7 +114,7 @@ users:
       # password 密码
       password: 'liYUEjia2003'
       # 地址信息
-      address: '吉林省长春市宽城区地理路'
+      address: '吉林省长春市宽城区五星路5961号'
       notifyOption:
         # method和顶部参数一致，不填默认按照顶部参数执行
         method: 2
@@ -262,53 +122,364 @@ users:
         rcvAcc: '2595103576@qq.com'
       # 附上经纬度查询地址（请自行选择自己的学校地址，address，lon，lat都要填查询到的）：http://api.map.baidu.com/lbsapi/getpoint/index.html
       # lon 经度
-      lon: 125.398101
+      lon: 125.307779
       # lat 纬度
-      lat: 44.001899
+      lat: 43.962269
       # 是否检查表单的标题（1代表检查，0代表不检查）
-      checkTitle: 1
+      checkTitle: 0
+      onlyRequired: 1
       #代理ip信息（格式为：网络协议://ip地址:端口   如：http://127.0.0.1:7890）
       proxy:
       # 表单信息
       forms:
         - form:
-            title: 早测温
-            value: 37.3度以下
+            title: 体温
+            value: 37.3℃以下
         - form:
-            title: 午测温
-            value: 37.3度以下
-        - form:
-            title: 晚测温
-            value: 37.3度以下
-        - form:
-            title: 健康状况
+            title: 本人身体健康状况
             value: 健康
-      photo: liyuejia.jpg
-#    # 第四个用户配置
-#    # 以下配置为查寝
-#    # 这里默认仅适配四川信息职业技术学院，其他学校自行修改
-#    - user:
-#        # 任务类型（收集：0、签到：1、查寝：2、教师工作日志：3）
-#        type: 2
-#        # school 学校全称
-#        schoolName: 四川信息职业技术学院
-#        # username 学号或者工号
-#        username: ''
-#        # password 密码
-#        password: ''
-#        # 地址信息
-#        address: ''
-#        notifyOption:
-#            # method和顶部参数一致，不填默认按照顶部参数执行
-#            # method: 0
-#            # rcvAcc为接受消息的账号，可以为Email账号、QQ号、或者是企业微信ID(@all为全体)
-#            rcvAcc: ''
-#        # 附上经纬度查询地址（请自行选择自己的学校地址，address，lon，lat都要填查询到的）：http://api.map.baidu.com/lbsapi/getpoint/index.html
-#        # lon 经度
-#        lon: 105.895856
-#        # lat 纬度
-#        lat: 32.424037
-#        # abnormalReason 反馈信息（这个一般不用配置，但是不能删除，删除会报错）
-#        abnormalReason: ''
-#        # photo 签到照片，不需要可不填，或者直接删除
-#        photo: sign.jpg
+        - form:
+            title: 家人身体状况有无异常
+            value: 健康
+        - form:
+            title: 本人或家人当日是否接触来自疫情中高风险地区人员、境外人员，疑似病例、无症状感染者或确诊病例
+            value: 否
+        - form:
+            title: 当日是否去过中、高风险地区
+            value: 否
+        - form:
+            title: 当日是否有跨省或市异动出行
+            value: 否
+        - form:
+            title: 是否被医学隔离
+            value: 否
+        - form:
+            title: 是否为疑似病例
+            value: 否
+        - form:
+            title: 是否为无症状感染者
+            value: 否
+        - form:
+            title: 是否为确诊病例
+            value: 否
+        - form:
+            title: 是否出入境
+            value: 否
+      photo:
+  # 第二个用户配置 赵梓丞
+  # 以下配置为信息收集
+  # 这里默认仅适配宜宾学院，其他学校自行修改
+  - user:
+      # 任务类型（收集：0、签到：1、查寝：2、教师工作日志：3）
+      type: 0
+      # school 学校全称
+      schoolName: 长春工业大学
+      # username 学号或者工号
+      username: '20191207'
+      # password 密码
+      password: 'qweasd1234'
+      # 地址信息
+      address: '中国吉林省四平市铁西区爱民路'
+      notifyOption:
+        # method和顶部参数一致，不填默认按照顶部参数执行
+        method: 2
+        # rcvAcc为接受消息的账号，可以为Email账号、QQ号、或者是企业微信ID(@all为全体)
+        rcvAcc: '1075268033@qq.com'
+      # 附上经纬度查询地址（请自行选择自己的学校地址，address，lon，lat都要填查询到的）：http://api.map.baidu.com/lbsapi/getpoint/index.html
+      # lon 经度
+      lon: 124.370864
+      # lat 纬度
+      lat: 43.186702
+      # 是否检查表单的标题（1代表检查，0代表不检查）
+      checkTitle: 0
+      onlyRequired: 1
+      #代理ip信息（格式为：网络协议://ip地址:端口   如：http://127.0.0.1:7890）
+      proxy: 
+      # 表单信息
+      forms:
+        - form:
+            title: 体温
+            value: 37.3℃以下
+        - form:
+            title: 本人身体健康状况
+            value: 健康
+        - form:
+            title: 家人身体状况有无异常
+            value: 健康
+        - form:
+            title: 本人或家人当日是否接触来自疫情中高风险地区人员、境外人员，疑似病例、无症状感染者或确诊病例
+            value: 否
+        - form:
+            title: 当日是否去过中、高风险地区
+            value: 否
+        - form:
+            title: 当日是否有跨省或市异动出行
+            value: 否
+        - form:
+            title: 是否被医学隔离
+            value: 否
+        - form:
+            title: 是否为疑似病例
+            value: 否
+        - form:
+            title: 是否为无症状感染者
+            value: 否
+        - form:
+            title: 是否为确诊病例
+            value: 否
+        - form:
+            title: 是否出入境
+            value: 否
+      photo:
+  - user:
+      # 任务类型（收集：0、签到：1、查寝：2、教师工作日志：3）
+      type: 0
+      # school 学校全称
+      schoolName: 长春工业大学
+      # username 学号或者工号
+      username: '20214216'
+      # password 密码
+      password: 'yhci29'
+      # 地址信息
+      address: '吉林省长春市榆树市紫云阁小区'
+      notifyOption:
+        # method和顶部参数一致，不填默认按照顶部参数执行
+        method: 2
+        # rcvAcc为接受消息的账号，可以为Email账号、QQ号、或者是企业微信ID(@all为全体)
+        rcvAcc: '1392290580@qq.com'
+      # 附上经纬度查询地址（请自行选择自己的学校地址，address，lon，lat都要填查询到的）：http://api.map.baidu.com/lbsapi/getpoint/index.html
+      # lon 经度
+      lon: 126.56307
+      # lat 纬度
+      lat: 44.840815
+      # 是否检查表单的标题（1代表检查，0代表不检查）
+      checkTitle: 1
+      onlyRequired: 1
+      #代理ip信息（格式为：网络协议://ip地址:端口   如：http://127.0.0.1:7890）
+      proxy: 
+      # 表单信息
+      forms:
+        - form:
+            title: 体温
+            value: 37.3℃以下
+        - form:
+            title: 本人身体健康状况
+            value: 健康
+        - form:
+            title: 家人身体状况有无异常
+            value: 健康
+        - form:
+            title: 本人或家人当日是否接触来自疫情中高风险地区人员、境外人员，疑似病例、无症状感染者或确诊病例
+            value: 否
+        - form:
+            title: 当日是否去过中、高风险地区
+            value: 否
+        - form:
+            title: 当日是否有跨省或市异动出行
+            value: 否
+        - form:
+            title: 是否被医学隔离
+            value: 否
+        - form:
+            title: 是否为疑似病例
+            value: 否
+        - form:
+            title: 是否为无症状感染者
+            value: 否
+        - form:
+            title: 是否为确诊病例
+            value: 否
+        - form:
+            title: 是否出入境
+            value: 否
+      photo:
+  # 王华奥
+  - user:
+      # 任务类型（收集：0、签到：1、查寝：2、教师工作日志：3）
+      type: 0
+      # school 学校全称
+      schoolName: 长春工业大学
+      # username 学号或者工号
+      username: '20214271'
+      # password 密码
+      password: 'mima123456'
+      # 地址信息
+      address: '河南省禹州市张得乡张北村'
+      notifyOption:
+        # method和顶部参数一致，不填默认按照顶部参数执行
+        method: 2
+        # rcvAcc为接受消息的账号，可以为Email账号、QQ号、或者是企业微信ID(@all为全体)
+        rcvAcc: '1783579628@qq.com'
+      # 附上经纬度查询地址（请自行选择自己的学校地址，address，lon，lat都要填查询到的）：http://api.map.baidu.com/lbsapi/getpoint/index.html
+      # lon 经度
+      lon: 113.413761
+      # lat 纬度
+      lat: 34.064033
+      # 是否检查表单的标题（1代表检查，0代表不检查）
+      checkTitle: 0
+      onlyRequired: 1
+      #代理ip信息（格式为：网络协议://ip地址:端口   如：http://127.0.0.1:7890）
+      proxy:
+      # 表单信息
+      forms:
+        - form:
+            title: 体温
+            value: 37.3℃以下
+        - form:
+            title: 本人身体健康状况
+            value: 健康
+        - form:
+            title: 家人身体状况有无异常
+            value: 健康
+        - form:
+            title: 本人或家人当日是否接触来自疫情中高风险地区人员、境外人员，疑似病例、无症状感染者或确诊病例
+            value: 否
+        - form:
+            title: 当日是否去过中、高风险地区
+            value: 否
+        - form:
+            title: 当日是否有跨省或市异动出行
+            value: 否
+        - form:
+            title: 是否被医学隔离
+            value: 否
+        - form:
+            title: 是否为疑似病例
+            value: 否
+        - form:
+            title: 是否为无症状感染者
+            value: 否
+        - form:
+            title: 是否为确诊病例
+            value: 否
+        - form:
+            title: 是否出入境
+            value: 否
+      photo:
+  # 冯时
+  - user:
+      # 任务类型（收集：0、签到：1、查寝：2、教师工作日志：3）
+      type: 0
+      # school 学校全称
+      schoolName: 长春工业大学
+      # username 学号或者工号
+      username: '20214248'
+      # password 密码
+      password: 'fs2205232001'
+      # 地址信息
+      address: '吉林省辉南县朝阳镇龙湾朝辉'
+      notifyOption:
+        # method和顶部参数一致，不填默认按照顶部参数执行
+        method: 2
+        # rcvAcc为接受消息的账号，可以为Email账号、QQ号、或者是企业微信ID(@all为全体)
+        rcvAcc: '3574308916@qq.com'
+      # 附上经纬度查询地址（请自行选择自己的学校地址，address，lon，lat都要填查询到的）：http://api.map.baidu.com/lbsapi/getpoint/index.html
+      # lon 经度
+      lon: 126.019701
+      # lat 纬度
+      lat: 42.681928
+      # 是否检查表单的标题（1代表检查，0代表不检查）
+      checkTitle: 0
+      onlyRequired: 1
+      #代理ip信息（格式为：网络协议://ip地址:端口   如：http://127.0.0.1:7890）
+      proxy:
+      # 表单信息
+      forms:
+        - form:
+            title: 体温
+            value: 37.3℃以下
+        - form:
+            title: 本人身体健康状况
+            value: 健康
+        - form:
+            title: 家人身体状况有无异常
+            value: 健康
+        - form:
+            title: 本人或家人当日是否接触来自疫情中高风险地区人员、境外人员，疑似病例、无症状感染者或确诊病例
+            value: 否
+        - form:
+            title: 当日是否去过中、高风险地区
+            value: 否
+        - form:
+            title: 当日是否有跨省或市异动出行
+            value: 否
+        - form:
+            title: 是否被医学隔离
+            value: 否
+        - form:
+            title: 是否为疑似病例
+            value: 否
+        - form:
+            title: 是否为无症状感染者
+            value: 否
+        - form:
+            title: 是否为确诊病例
+            value: 否
+        - form:
+            title: 是否出入境
+            value: 否
+      photo:
+
+  # 解天刚
+  - user:
+      # 任务类型（收集：0、签到：1、查寝：2、教师工作日志：3）
+      type: 0
+      # school 学校全称
+      schoolName: 长春工业大学
+      # username 学号或者工号
+      username: '20214212'
+      # password 密码
+      password: 'xtg042217'
+      # 地址信息
+      address: '云南省普洱市思茅区西郊路28号'
+      notifyOption:
+        # method和顶部参数一致，不填默认按照顶部参数执行
+        method: 2
+        # rcvAcc为接受消息的账号，可以为Email账号、QQ号、或者是企业微信ID(@all为全体)
+        rcvAcc: '1455371109@qq.com'
+      # 附上经纬度查询地址（请自行选择自己的学校地址，address，lon，lat都要填查询到的）：http://api.map.baidu.com/lbsapi/getpoint/index.html
+      # lon 经度
+      lon: 100.969089
+      # lat 纬度
+      lat: 22.774646
+      # 是否检查表单的标题（1代表检查，0代表不检查）
+      checkTitle: 0
+      onlyRequired: 1
+      #代理ip信息（格式为：网络协议://ip地址:端口   如：http://127.0.0.1:7890）
+      proxy:
+      # 表单信息
+      forms:
+        - form:
+            title: 体温
+            value: 37.3℃以下
+        - form:
+            title: 本人身体健康状况
+            value: 健康
+        - form:
+            title: 家人身体状况有无异常
+            value: 健康
+        - form:
+            title: 本人或家人当日是否接触来自疫情中高风险地区人员、境外人员，疑似病例、无症状感染者或确诊病例
+            value: 否
+        - form:
+            title: 当日是否去过中、高风险地区
+            value: 否
+        - form:
+            title: 当日是否有跨省或市异动出行
+            value: 否
+        - form:
+            title: 是否被医学隔离
+            value: 否
+        - form:
+            title: 是否为疑似病例
+            value: 否
+        - form:
+            title: 是否为无症状感染者
+            value: 否
+        - form:
+            title: 是否为确诊病例
+            value: 否
+        - form:
+            title: 是否出入境
+            value: 否
+      photo:

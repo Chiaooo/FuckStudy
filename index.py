@@ -1,10 +1,10 @@
-from login.wiseLoginService import wiseLoginService
+from tencentcloud.common.profile.http_profile import HttpProfile
+from actions.wiseLoginService import wiseLoginService
 from actions.autoSign import AutoSign
 from actions.collection import Collection
 from actions.workLog import workLog
-from actions.sleepCheck import sleepCheck
 from actions.pushKit import pushKit
-from login.Utils import Utils
+from actions.Utils import Utils
 from time import sleep
 
 
@@ -12,14 +12,17 @@ def main():
     Utils.log("自动化任务开始执行")
     config = Utils.getYmlConfig()
     push = pushKit(config['notifyOption'])
+    httpProxy = config['httpProxy'] if 'httpProxy' in config else ''
     for user in config['users']:
-        Utils.log(f"10s后开始执行用户{user['user']['username'] if user['user']['username'] else '默认用户'}的任务")
-        sleep(0)
+        Utils.log(
+            f"1s后开始执行用户{user['user']['username'] if user['user']['username'] else '默认用户'}的任务"
+        )
+        sleep(1)
         if config['debug']:
-            msg = working(user)
+            msg = working(user, httpProxy)
         else:
             try:
-                msg = working(user)
+                msg = working(user, httpProxy)
                 ret = True
             except Exception as e:
                 msg = str(e)
@@ -46,22 +49,26 @@ def main():
     Utils.log("自动化任务执行完毕")
 
 
-def working(user):
-    wise = wiseLoginService(user['user'])
+def working(user, httpProxy):
+    Utils.log('正在获取登录地址')
+    wise = wiseLoginService(user['user'], httpProxy)
+    Utils.log('开始尝试登录账号')
     wise.login()
     sleep(1)
     # 登陆成功，通过type判断当前属于 信息收集、签到、查寝
     # 信息收集
     if user['user']['type'] == 0:
         # 以下代码是信息收集的代码
+        Utils.log('开始执行收集任务')
         collection = Collection(wise, user['user'])
         collection.queryForm()
         collection.fillForm()
         sleep(1)
         msg = collection.submitForm()
         return msg
-    elif user['user']['type'] == 1:
+    elif user['user']['type'] in [1,2,3]:
         # 以下代码是签到的代码
+        Utils.log('开始执行签到任务')
         sign = AutoSign(wise, user['user'])
         sign.getUnSignTask()
         sleep(1)
@@ -70,18 +77,9 @@ def working(user):
         sleep(1)
         msg = sign.submitForm()
         return msg
-    elif user['user']['type'] == 2:
-        # 以下代码是查寝的代码
-        check = sleepCheck(wise, user['user'])
-        check.getUnSignedTasks()
-        sleep(1)
-        check.getDetailTask()
-        check.fillForm()
-        sleep(1)
-        msg = check.submitForm()
-        return msg
-    elif user['user']['type'] == 3:
+    elif user['user']['type'] == 4:
         # 以下代码是工作日志的代码
+        Utils.log('开始执行日志任务')
         work = workLog(wise, user['user'])
         work.checkHasLog()
         sleep(1)

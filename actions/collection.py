@@ -1,10 +1,6 @@
-import base64
 import json
-import re
-import uuid
-from pyDes import PAD_PKCS5, des, CBC
-from login.Utils import Utils
-from login.wiseLoginService import wiseLoginService
+from actions.Utils import Utils
+from actions.wiseLoginService import wiseLoginService
 
 
 class Collection:
@@ -17,13 +13,15 @@ class Collection:
         self.collectWid = None
         self.formWid = None
         self.schoolTaskWid = None
+        self.instanceWid = None
+        self.apis = Utils.getApis(userInfo['type'])
 
     # 查询表单
     def queryForm(self):
         headers = self.session.headers
         headers['Content-Type'] = 'application/json'
-        queryUrl = f'{self.host}wec-counselor-collector-apps/stu/collector/queryCollectorProcessingList'
-        params = {'pageSize': 20, "pageNumber": 1}
+        queryUrl = self.host + self.apis[0]
+        params = {"pageSize": 20, "pageNumber": 1}
         res = self.session.post(queryUrl,
                                 data=json.dumps(params),
                                 headers=headers,
@@ -34,21 +32,25 @@ class Collection:
             if item['isHandled'] == 0:
                 self.collectWid = item['wid']
                 self.formWid = item['formWid']
+                self.instanceWid = item['instanceWid']
         if (self.formWid == None):
             raise Exception('当前暂时没有未完成的信息收集哦！')
-        detailUrl = f'{self.host}wec-counselor-collector-apps/stu/collector/detailCollector'
+        detailUrl = self.host + self.apis[1]
         res = self.session.post(detailUrl,
                                 headers=headers,
-                                data=json.dumps(
-                                    {'collectorWid': self.collectWid}),
+                                data=json.dumps({
+                                    "collectorWid": self.collectWid,
+                                    "instanceWid": self.instanceWid
+                                }),
                                 verify=False).json()
         self.schoolTaskWid = res['datas']['collector']['schoolTaskWid']
-        getFormUrl = f'{self.host}wec-counselor-collector-apps/stu/collector/getFormFields'
+        getFormUrl = self.host + self.apis[2]
         params = {
             "pageSize": 100,
             "pageNumber": 1,
             "formWid": self.formWid,
-            "collectorWid": self.collectWid
+            "collectorWid": self.collectWid,
+            "instanceWid": self.instanceWid
         }
         res = self.session.post(getFormUrl,
                                 headers=headers,
@@ -59,7 +61,8 @@ class Collection:
     # 填写表单
     def fillForm(self):
         index = 0
-        onlyRequired = self.userInfo['onlyRequired'] if 'onlyRequired' in self.userInfo else 1
+        onlyRequired = self.userInfo[
+            'onlyRequired'] if 'onlyRequired' in self.userInfo else 1
         for formItem in self.form[:]:
             if onlyRequired == 1:
                 if not formItem['isRequired']:
@@ -114,57 +117,25 @@ class Collection:
                     raise Exception(f'\r\n第{index + 1}个配置项的选项不正确,该选项为必填多选')
                 formItem['value'] = ','.join(tempValue)
             elif formItem['fieldType'] == '4':
-                Utils.uploadPicture(self, 'collector', userForm['value'])
-                formItem['value'] = Utils.getPictureUrl(self, 'collector')
+                Utils.uploadPicture(self, self.apis[4], userForm['value'])
+                formItem['value'] = Utils.getPictureUrl(self, self.apis[5])
             else:
                 raise Exception(f'\r\n第{index + 1}个配置项的类型未适配')
             index += 1
 
     # 提交表单
     def submitForm(self):
-        extension = {
-            "model": "OPPO R11 Plus",
-            "appVersion": "8.2.14",
-            "systemVersion": "9.1.0",
-            "userId": self.userInfo['username'],
-            "systemName": "android",
-            "lon": self.userInfo['lon'],
-            "lat": self.userInfo['lat'],
-            "deviceId": str(uuid.uuid1())
-        }
-
-        headers = {
-            'User-Agent': self.session.headers['User-Agent'],
-            'CpdailyStandAlone': '0',
-            'extension': '1',
-            'Cpdaily-Extension': self.DESEncrypt(json.dumps(extension)),
-            'Content-Type': 'application/json; charset=utf-8',
-            # 请注意这个应该和配置文件中的host保持一致
-            'Host': re.findall('//(.*?)/', self.host)[0],
-            'Connection': 'Keep-Alive',
-            'Accept-Encoding': 'gzip'
-        }
-        params = {
+        self.submitData = {
             "formWid": self.formWid,
             "address": self.userInfo['address'],
             "collectWid": self.collectWid,
+            "instanceWid": self.instanceWid,
             "schoolTaskWid": self.schoolTaskWid,
             "form": self.form,
             "uaIsCpadaily": True,
             "latitude": self.userInfo['lat'],
             'longitude': self.userInfo['lon']
         }
-        submitUrl = f'{self.host}wec-counselor-collector-apps/stu/collector/submitForm'
-        data = self.session.post(submitUrl,
-                                 headers=headers,
-                                 data=json.dumps(params),
-                                 verify=False).json()
-        return data['message']
-
-    # DES加密
-    def DESEncrypt(self, content):
-        key = 'b3L26XNL'
-        iv = b"\x01\x02\x03\x04\x05\x06\x07\x08"
-        k = des(key, CBC, iv, pad=None, padmode=PAD_PKCS5)
-        encrypt_str = k.encrypt(content)
-        return base64.b64encode(encrypt_str).decode()
+        self.submitApi = self.apis[3]
+        res = Utils.submitFormData(self).json()
+        return res['message']
